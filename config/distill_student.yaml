@@ -1,0 +1,25 @@
+seed: 42
+device: "cuda"
+
+data:
+  batch_size: 32
+  seq_len: 128
+  num_workers: 2
+
+train:
+  epochs: 10
+  lr: 1.0e-3
+  save_dir: "data/checkpoints"
+
+model:
+  type: "lstm"  # or "lstm", "xlstm"
+  hidden_size: 256
+  num_layers: 2
+  vocab_size: 1000
+
+distillation:
+  temperature: 2.0
+  alpha: 0.5  # balance between CE loss and distill loss
+  teacher_checkpoint: "data/checkpoints/teacher_transformer.pt"
+  
+save_name: "student_lstm.pt"
